@@ -1,7 +1,6 @@
 ﻿using api.Models.Entities;
 using api.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace api.Services
 {
