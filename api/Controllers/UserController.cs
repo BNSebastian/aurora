@@ -23,11 +23,18 @@ namespace api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _userService.Delete(id);
             if (!deleted) return NotFound();
             return NoContent();
+        }
+
+        [HttpGet("exists/{id}")]
+        public async Task<ActionResult<bool>> Exists(int id)
+        {
+            var exists = await _userService.Exists(id);
+            return Ok(exists);
         }
 
         [HttpGet]
@@ -38,14 +45,14 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetById(Guid id)
+        public async Task<ActionResult<User>> GetById(int id)
         {
             var user = await _userService.GetById(id);
             if (user == null) return NotFound();
             return Ok(user);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<ActionResult<User>> Update(User user)
         {
             var updatedUser = await _userService.Update(user);

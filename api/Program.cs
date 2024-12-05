@@ -36,6 +36,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapUserEndpoints();
-
 app.Run();

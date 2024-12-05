@@ -20,7 +20,7 @@ namespace api.Services
             return user;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(int id)
         {
             var product = await _db.Users.FindAsync(id);
             if (product == null) return false;
@@ -30,12 +30,17 @@ namespace api.Services
             return true;
         }
 
+        public async Task<bool> Exists(int id)
+        {
+            return await _db.Users.AnyAsync(entry => entry.Id == id);
+        }
+
         public async Task<ICollection<User>> GetAll()
         {
             return await _db.Users.ToListAsync();
         }
 
-        public async Task<User> GetById(Guid id)
+        public async Task<User> GetById(int id)
         {
             return await _db.Users.FindAsync(id);
         }
